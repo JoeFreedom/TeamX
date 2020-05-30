@@ -14,9 +14,9 @@ namespace ConsoleFilesDirectories
             string path = @"C:\";
             ConsoleFunctions.DirectoryContent(path); //Done!
 
-            //Удаление:
-            path = @"C:\TestFolder";
-            ConsoleFunctions.Delete(path); //Done!
+            //Создание каталога:
+            path = @"C:\";
+            ConsoleFunctions.Create(path); //Done!
 
             //Переход в следующий каталог:
             path = @"C:\";
@@ -28,9 +28,9 @@ namespace ConsoleFilesDirectories
             path = ConsoleFunctions.GoToContent(path);
             WriteLine(path); //Done!
 
-            //Создание каталога:
-            path = @"C:\";
-            ConsoleFunctions.Create(path); //Done!
+            //Удаление:
+            path = @"C:\TestFolder";
+            ConsoleFunctions.Delete(path); //Done!
         }
     }
 }

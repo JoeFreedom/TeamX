@@ -63,14 +63,15 @@ namespace ConsoleFilesDirectories
         {
             string[] directories = Directory.GetDirectories(path);
             string folder = ReadLine();
-            path += folder;
-            if (Directory.Exists(path))
+            string tempPath = path;
+            if (Directory.Exists(tempPath + folder))
             {
+                path += $"{folder}\\";
                 DirectoryContent(path);
             }
             else
             {
-                path += folder;
+                tempPath += folder;
                 WriteLine($"Directory {path} is not found");
             }
             // Sergey

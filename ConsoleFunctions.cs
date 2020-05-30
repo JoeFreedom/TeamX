@@ -69,7 +69,23 @@ namespace ConsoleFilesDirectories
                 WriteLine("Failed to create folder");
             }
         }
-
+        public static string GoToContent(string path)
+        {
+            string[] directories = Directory.GetDirectories(path);
+            WriteLine("Write the name of the folder:");
+            string specifiedPath = ReadLine();
+            if (Directory.Exists(specifiedPath))
+            {
+                DirectoryContent(specifiedPath);
+                return specifiedPath;
+            }
+            else
+            {
+                WriteLine($"Directory {specifiedPath} is not found");
+                return path;
+            }
+            // Sergey
+        }
         public static string GoToNextContent(string path)
         {
             string[] directories = Directory.GetDirectories(path);

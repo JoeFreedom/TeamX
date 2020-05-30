@@ -23,6 +23,11 @@ namespace ConsoleFilesDirectories
             path = ConsoleFunctions.GoToNextContent(path); 
             WriteLine(path); //Done!
 
+            //Переход в нужный каталог:
+            path = @"C:\";
+            path = ConsoleFunctions.GoToContent(path);
+            WriteLine(path); //Done!
+
             //Создание каталога:
             path = @"C:\";
             ConsoleFunctions.Create(path); //Done!

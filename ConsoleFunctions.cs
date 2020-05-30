@@ -35,9 +35,21 @@ namespace ConsoleFilesDirectories
             // Sergey
         }
 
-        public static void Copy()
+        public static void Copy(string path)
         {
-            // Lev
+            WriteLine("Write the name of the folder to copy:");
+            string folder = ReadLine();
+            path += folder;
+            if (!Directory.Exists(folder))
+            {
+                Directory.Move(path, folder);
+                WriteLine("Folder creation complete");
+            }
+            else
+            {
+                WriteLine("Failed to create folder");
+            }
+            // Joel
         }
 
         public static void Delete(string path)

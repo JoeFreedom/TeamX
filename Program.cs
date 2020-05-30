@@ -11,16 +11,20 @@ namespace ConsoleFilesDirectories
             //Тестирование методов
             //Показать содержимое каталога:
             DriveInfo[] drives = DriveInfo.GetDrives();
-            string path = "C:\\";
+            string path = @"C:\";
             ConsoleFunctions.DirectoryContent(path); //Done!
 
             //Удаление:
-            path = "C:\\TestFolder";
+            path = @"C:\TestFolder";
             ConsoleFunctions.Delete(path); //Done!
 
             //Переход в следующий каталог:
-            path = "C:\\";
+            path = @"C:\";
             ConsoleFunctions.GoToNextContent(path); //Done!
+
+            //Создание каталога:
+            path = @"C:\";
+            ConsoleFunctions.Create(path); //Done!
         }
     }
 }

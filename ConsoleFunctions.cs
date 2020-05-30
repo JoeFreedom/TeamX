@@ -54,14 +54,26 @@ namespace ConsoleFilesDirectories
             // Sergey
         }
 
-        public static void Create()
+        public static void Create(string path)
         {
-            // Joe
+            WriteLine("Write the name of the folder to create:");
+            string folder = ReadLine();
+            path += folder;
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+                WriteLine("Folder creation complete");
+            }
+            else
+            {
+                WriteLine("Failed to create folder");
+            }
         }
 
         public static void GoToNextContent(string path)
         {
             string[] directories = Directory.GetDirectories(path);
+            WriteLine("Write the name of the folder:");
             string folder = ReadLine();
             string tempPath = path;
             if (Directory.Exists(tempPath + folder))
@@ -72,7 +84,7 @@ namespace ConsoleFilesDirectories
             else
             {
                 tempPath += folder;
-                WriteLine($"Directory {path} is not found");
+                WriteLine($"Directory {tempPath} is not found");
             }
             // Sergey
         }

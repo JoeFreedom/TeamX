@@ -1,0 +1,13 @@
+C:\ShagAcademy\GitHub\TeamX\bin\Debug\netcoreapp3.1\ConsoleFilesDirectories.exe
+C:\ShagAcademy\GitHub\TeamX\bin\Debug\netcoreapp3.1\ConsoleFilesDirectories.deps.json
+C:\ShagAcademy\GitHub\TeamX\bin\Debug\netcoreapp3.1\ConsoleFilesDirectories.runtimeconfig.json
+C:\ShagAcademy\GitHub\TeamX\bin\Debug\netcoreapp3.1\ConsoleFilesDirectories.runtimeconfig.dev.json
+C:\ShagAcademy\GitHub\TeamX\bin\Debug\netcoreapp3.1\ConsoleFilesDirectories.dll
+C:\ShagAcademy\GitHub\TeamX\bin\Debug\netcoreapp3.1\ConsoleFilesDirectories.pdb
+C:\ShagAcademy\GitHub\TeamX\obj\Debug\netcoreapp3.1\ConsoleFilesDirectories.csprojAssemblyReference.cache
+C:\ShagAcademy\GitHub\TeamX\obj\Debug\netcoreapp3.1\ConsoleFilesDirectories.csproj.CoreCompileInputs.cache
+C:\ShagAcademy\GitHub\TeamX\obj\Debug\netcoreapp3.1\ConsoleFilesDirectories.AssemblyInfoInputs.cache
+C:\ShagAcademy\GitHub\TeamX\obj\Debug\netcoreapp3.1\ConsoleFilesDirectories.AssemblyInfo.cs
+C:\ShagAcademy\GitHub\TeamX\obj\Debug\netcoreapp3.1\ConsoleFilesDirectories.dll
+C:\ShagAcademy\GitHub\TeamX\obj\Debug\netcoreapp3.1\ConsoleFilesDirectories.pdb
+C:\ShagAcademy\GitHub\TeamX\obj\Debug\netcoreapp3.1\ConsoleFilesDirectories.genruntimeconfig.cache

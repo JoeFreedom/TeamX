@@ -58,8 +58,6 @@ namespace ConsoleFilesDirectories
         {
              try
             {
-                
-
                 DirectoryInfo directoryInfo = new DirectoryInfo(path);
                 if (!directoryInfo.Exists)
                 {
@@ -69,9 +67,7 @@ namespace ConsoleFilesDirectories
             }
             catch (UnauthorizedAccessException)
             {
-
             }
-
         }
 
         public static void GoToNextContent(string path)

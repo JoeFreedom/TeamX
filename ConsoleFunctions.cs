@@ -35,9 +35,22 @@ namespace ConsoleFilesDirectories
            
         }
 
-        public static void Copy()
+       public static void Copy(string oldPath, string newPath)
         {
-            // Lev
+            try
+            {
+                DirectoryInfo dirInfo = new DirectoryInfo(oldPath);
+                if (dirInfo.Exists && Directory.Exists(newPath) == false)
+                {
+                    dirInfo.MoveTo(newPath);
+                }
+            }
+            catch(Exception)
+            {
+
+            }
+            
+            // Joe
         }
 
         public static void Delete(string path)

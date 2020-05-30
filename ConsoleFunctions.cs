@@ -32,7 +32,7 @@ namespace ConsoleFilesDirectories
             {
                 WriteLine($"Directory {path} is not found");
             }
-            // Sergey
+           
         }
 
         public static void Copy()
@@ -56,7 +56,22 @@ namespace ConsoleFilesDirectories
 
         public static void Create()
         {
-            // Joe
+             try
+            {
+                
+
+                DirectoryInfo directoryInfo = new DirectoryInfo(path);
+                if (!directoryInfo.Exists)
+                {
+                    directoryInfo.Create();
+                }
+                directoryInfo.CreateSubdirectory(subPath);
+            }
+            catch (UnauthorizedAccessException)
+            {
+
+            }
+
         }
 
         public static void GoToNextContent(string path)

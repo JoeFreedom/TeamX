@@ -34,8 +34,25 @@ namespace ConsoleFilesDirectories
             }
            
         }
+        
+        public static void CopyTwo(string path)
+        {
+            WriteLine("Write the name of the folder to copy:");
+            string folder = ReadLine();
+            path += folder;
+           // Directory dirInfo = new Directory(path);
+            if (!Directory.Exists(path))
+            {
+                Directory.Move(path, folder);
+                WriteLine("Folder creation complete");
+            }
+            else
+            {
+                WriteLine("Failed to create folder");
+            }
+        }
 
-       public static void Copy(string oldPath, string newPath)
+       public static void CopyTwo(string oldPath, string newPath)
         {
             try
             {

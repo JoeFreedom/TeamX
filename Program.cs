@@ -28,6 +28,10 @@ namespace ConsoleFilesDirectories
             path = ConsoleFunctions.GoToContent(path);
             WriteLine(path); //Done!
 
+            //Копирование:
+            path = @"C:\TestFolder2";
+            ConsoleFunctions.Copy(path);  //Done!
+
             //Удаление:
             path = @"C:\TestFolder";
             ConsoleFunctions.Delete(path); //Done!

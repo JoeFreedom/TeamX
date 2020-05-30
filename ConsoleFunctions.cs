@@ -35,21 +35,51 @@ namespace ConsoleFilesDirectories
             // Sergey
         }
 
-        public static void Copy(string path)
+        public static void MoveDirectory(string path)
         {
-            WriteLine("Write the name of the folder to copy:");
+            WriteLine("Specify the path to move the folder:");
             string folder = ReadLine();
-            path += folder;
-            if (!Directory.Exists(folder))
+            try
             {
                 Directory.Move(path, folder);
-                WriteLine("Folder creation complete");
+                WriteLine("Folder moved complete");
+            }
+            catch (Exception)
+            {
+                WriteLine("Failed to move folder");
+            }
+        }
+
+        public static void Copy(string path)
+        {
+            DirectoryInfo dir = new DirectoryInfo(path);
+            if (!dir.Exists)
+            {
+                WriteLine("Source directory does not exist or could not be found: ");
             }
             else
             {
-                WriteLine("Failed to create folder");
+                WriteLine("Specify the full path to copy");
+                string copyPath = ReadLine();
+                DirectoryInfo[] dirs = dir.GetDirectories();
+                if (!Directory.Exists(copyPath))
+                {
+                    Directory.CreateDirectory(copyPath);
+                }
+
+                FileInfo[] files = dir.GetFiles();
+                foreach (FileInfo file in files)
+                {
+                    string temppath = Path.Combine(copyPath, file.Name);
+                    file.CopyTo(temppath, false);
+                }
+
+                foreach (DirectoryInfo subdir in dirs)
+                {
+                    string temppath = Path.Combine(copyPath, subdir.Name);
+                    Copy(subdir.FullName);
+                }
             }
-            // Joel
         }
 
         public static void Delete(string path)

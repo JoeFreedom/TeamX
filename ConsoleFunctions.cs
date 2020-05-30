@@ -54,8 +54,9 @@ namespace ConsoleFilesDirectories
             // Sergey
         }
 
-        public static void Create()
+        public static void Create(string path)
         {
+            string subPath;
              try
             {
                 DirectoryInfo directoryInfo = new DirectoryInfo(path);

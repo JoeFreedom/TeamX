@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Text;
@@ -8,7 +8,6 @@ namespace ConsoleFilesDirectories
 {
     public static class ConsoleFunctions
     {
-        // достаточно показать содержимое каталога, скопировать, удалить и создать, перейти к нужному каталогу
         public static void DirectoryContent(string path)
         {
             if (Directory.Exists(path))
@@ -32,42 +31,53 @@ namespace ConsoleFilesDirectories
             {
                 WriteLine($"Directory {path} is not found");
             }
-           
         }
-        
-        public static void CopyTwo(string path)
+
+        public static void MoveDirectory(string path)
         {
-            WriteLine("Write the name of the folder to copy:");
+            WriteLine("Specify the path to move the folder:");
             string folder = ReadLine();
-            path += folder;
-           // Directory dirInfo = new Directory(path);
-            if (!Directory.Exists(path))
+            try
             {
                 Directory.Move(path, folder);
-                WriteLine("Folder creation complete");
+                WriteLine("Folder moved complete");
+            }
+            catch (Exception)
+            {
+                WriteLine("Failed to move folder");
+            }
+        }
+
+        public static void Copy(string path)
+        {
+            DirectoryInfo dir = new DirectoryInfo(path);
+            if (!dir.Exists)
+            {
+                WriteLine("Source directory does not exist or could not be found: ");
             }
             else
             {
-                WriteLine("Failed to create folder");
-            }
-        }
-
-       public static void CopyTwo(string oldPath, string newPath)
-        {
-            try
-            {
-                DirectoryInfo dirInfo = new DirectoryInfo(oldPath);
-                if (dirInfo.Exists && Directory.Exists(newPath) == false)
+                WriteLine("Specify the full path to copy");
+                string copyPath = ReadLine();
+                DirectoryInfo[] dirs = dir.GetDirectories();
+                if (!Directory.Exists(copyPath))
                 {
-                    dirInfo.MoveTo(newPath);
+                    Directory.CreateDirectory(copyPath);
+                }
+
+                FileInfo[] files = dir.GetFiles();
+                foreach (FileInfo file in files)
+                {
+                    string temppath = Path.Combine(copyPath, file.Name);
+                    file.CopyTo(temppath, false);
+                }
+
+                foreach (DirectoryInfo subdir in dirs)
+                {
+                    string temppath = Path.Combine(copyPath, subdir.Name);
+                    Copy(subdir.FullName);
                 }
             }
-            catch(Exception)
-            {
-
-            }
-            
-            // Joe
         }
 
         public static void Delete(string path)
@@ -81,41 +91,59 @@ namespace ConsoleFilesDirectories
             {
                 WriteLine($"Directory {path} is not found");
             }
-            // Sergey
         }
 
         public static void Create(string path)
         {
-            string subPath;
-             try
-            {
-                DirectoryInfo directoryInfo = new DirectoryInfo(path);
-                if (!directoryInfo.Exists)
-                {
-                    directoryInfo.Create();
-                }
-                directoryInfo.CreateSubdirectory(subPath);
-            }
-            catch (UnauthorizedAccessException)
-            {
-            }
-        }
-
-        public static void GoToNextContent(string path)
-        {
-            string[] directories = Directory.GetDirectories(path);
+            WriteLine("Write the name of the folder to create:");
             string folder = ReadLine();
             path += folder;
-            if (Directory.Exists(path))
+            if (!Directory.Exists(path))
             {
-                DirectoryContent(path);
+                Directory.CreateDirectory(path);
+                WriteLine("Folder creation complete");
             }
             else
             {
-                path += folder;
-                WriteLine($"Directory {path} is not found");
+                WriteLine("Failed to create folder");
             }
-            // Sergey
+        }
+        
+        public static string GoToContent(string path)
+        {
+            string[] directories = Directory.GetDirectories(path);
+            WriteLine("Specify the path to the desired directory:");
+            string specifiedPath = ReadLine();
+            if (Directory.Exists(specifiedPath))
+            {
+                DirectoryContent(specifiedPath);
+                return specifiedPath;
+            }
+            else
+            {
+                WriteLine($"Directory {specifiedPath} is not found");
+                return path;
+            }
+        }
+        
+        public static string GoToNextContent(string path)
+        {
+            string[] directories = Directory.GetDirectories(path);
+            WriteLine("Write the name of the folder:");
+            string folder = ReadLine();
+            string tempPath = path;
+            if (Directory.Exists(tempPath + folder))
+            {
+                path += $"{folder}\\";
+                DirectoryContent(path);
+                return path;
+            }
+            else
+            {
+                tempPath += folder;
+                WriteLine($"Directory {tempPath} is not found");
+                return path;
+            }
         }
     }
 }

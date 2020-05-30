@@ -70,7 +70,7 @@ namespace ConsoleFilesDirectories
             }
         }
 
-        public static void GoToNextContent(string path)
+        public static string GoToNextContent(string path)
         {
             string[] directories = Directory.GetDirectories(path);
             WriteLine("Write the name of the folder:");
@@ -80,11 +80,13 @@ namespace ConsoleFilesDirectories
             {
                 path += $"{folder}\\";
                 DirectoryContent(path);
+                return path;
             }
             else
             {
                 tempPath += folder;
                 WriteLine($"Directory {tempPath} is not found");
+                return path;
             }
             // Sergey
         }

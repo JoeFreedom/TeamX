@@ -8,7 +8,6 @@ namespace ConsoleFilesDirectories
 {
     public static class ConsoleFunctions
     {
-        // достаточно показать содержимое каталога, скопировать, удалить и создать, перейти к нужному каталогу
         public static void DirectoryContent(string path)
         {
             if (Directory.Exists(path))
@@ -32,7 +31,6 @@ namespace ConsoleFilesDirectories
             {
                 WriteLine($"Directory {path} is not found");
             }
-            // Sergey
         }
 
         public static void MoveDirectory(string path)
@@ -93,7 +91,6 @@ namespace ConsoleFilesDirectories
             {
                 WriteLine($"Directory {path} is not found");
             }
-            // Sergey
         }
 
         public static void Create(string path)
@@ -126,7 +123,6 @@ namespace ConsoleFilesDirectories
                 WriteLine($"Directory {specifiedPath} is not found");
                 return path;
             }
-            // Sergey
         }
         public static string GoToNextContent(string path)
         {
@@ -146,7 +142,6 @@ namespace ConsoleFilesDirectories
                 WriteLine($"Directory {tempPath} is not found");
                 return path;
             }
-            // Sergey
         }
     }
 }

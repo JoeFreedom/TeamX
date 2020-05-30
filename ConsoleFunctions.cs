@@ -72,7 +72,7 @@ namespace ConsoleFilesDirectories
         public static string GoToContent(string path)
         {
             string[] directories = Directory.GetDirectories(path);
-            WriteLine("Write the name of the folder:");
+            WriteLine("Specify the path to the desired directory:");
             string specifiedPath = ReadLine();
             if (Directory.Exists(specifiedPath))
             {

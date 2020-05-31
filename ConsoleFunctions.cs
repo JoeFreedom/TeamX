@@ -8,6 +8,81 @@ namespace ConsoleFilesDirectories
 {
     public static class ConsoleFunctions
     {
+        public static void ShowMenu(ref string path,ref bool end)
+        {
+            string menu = ReadLine();
+            switch (menu)
+            {
+                case "Info":
+                    MenuOption();
+                    break;
+                case "DiscInformation":
+                    DiscInfo();
+                    break;
+                case "ShowDirCont":
+                    ConsoleFunctions.DirectoryContent(path);
+                    break;
+                case "GoToSpecificDir":
+                    ConsoleFunctions.GoToSpecificDirectory(ref path);
+                    break;
+                case "GoToNextDir":
+                    ConsoleFunctions.GoToNextDirectory(ref path);
+                    break;
+                case "CreateFolder":
+                    ConsoleFunctions.CreateFolder(path);
+                    break;
+                case "CopyDirectory":
+                    ConsoleFunctions.CopyDirectory(path);
+                    break;
+                case "DeleteDirectory":
+                    ConsoleFunctions.DeleteDirectory(path);
+                    break;
+                case "MoveDirectory":
+                    ConsoleFunctions.MoveDirectory(path);
+                    break;
+                case "Exit":
+                    end = true;
+                    break;
+                default:
+                    WriteLine("Unknown command");
+                    break;
+            }
+        }
+
+        public static void MenuOption()
+        {
+            WriteLine("CHOOSE WHAT COMMAND YOU INTEND TO EXECUTE: ");
+            WriteLine("-------------------------------------------");
+            WriteLine("DiscInformation - shows Discs and necessary details about them");
+            WriteLine("ShowDirCont - sees what directories and files are there in the folder you are in");
+            WriteLine("GoToSpecificDir - goes to an exact or specific directory");
+            WriteLine("GoToNextDir - skips to the next directory");
+            WriteLine("CreateFolder - creates a new folder");
+            WriteLine("CopyDirectory - copies a all contents in the directory you are in to another");
+            WriteLine("DeleteDirectory - deletes the chosen directory");
+            WriteLine("MoveDirectory - completely moves the directory you are in");
+            WriteLine("Exit - exits programme");
+        }
+
+        public static void DiscInfo()
+        {
+            DriveInfo[] drives = DriveInfo.GetDrives();
+
+            foreach (var drive in drives)
+            {
+                if (drive.IsReady)
+                {
+                    WriteLine($"{drive.Name} - {GetGB(drive.TotalSize)} GB - {GetGB(drive.AvailableFreeSpace)} GB");
+                }
+            }
+        }
+
+        static double GetGB(long bytes)
+        {
+            var result = (double)bytes / (1024 * 1024 * 1024);
+            return Math.Round(result, 2);
+        }
+
         public static void DirectoryContent(string path)
         {
             if (Directory.Exists(path))
@@ -48,7 +123,7 @@ namespace ConsoleFilesDirectories
             }
         }
 
-        public static void Copy(string path)
+        public static void CopyDirectory(string path)
         {
             DirectoryInfo dir = new DirectoryInfo(path);
             if (!dir.Exists)
@@ -75,13 +150,16 @@ namespace ConsoleFilesDirectories
                 foreach (DirectoryInfo subdir in dirs)
                 {
                     string temppath = Path.Combine(copyPath, subdir.Name);
-                    Copy(subdir.FullName);
+                    CopyDirectory(subdir.FullName);
                 }
             }
         }
 
-        public static void Delete(string path)
+        public static void DeleteDirectory(string path)
         {
+            WriteLine("Write the name of the folder:");
+            string folder = ReadLine();
+            path += $"{folder}\\";
             if (Directory.Exists(path))
             {
                 Directory.Delete(path, true);
@@ -93,7 +171,7 @@ namespace ConsoleFilesDirectories
             }
         }
 
-        public static void Create(string path)
+        public static void CreateFolder(string path)
         {
             WriteLine("Write the name of the folder to create:");
             string folder = ReadLine();
@@ -109,15 +187,14 @@ namespace ConsoleFilesDirectories
             }
         }
         
-        public static string GoToContent(string path)
+        public static string GoToSpecificDirectory(ref string path)
         {
-            string[] directories = Directory.GetDirectories(path);
             WriteLine("Specify the path to the desired directory:");
             string specifiedPath = ReadLine();
             if (Directory.Exists(specifiedPath))
             {
-                DirectoryContent(specifiedPath);
-                return specifiedPath;
+                path = specifiedPath;
+                return path;
             }
             else
             {
@@ -126,16 +203,14 @@ namespace ConsoleFilesDirectories
             }
         }
         
-        public static string GoToNextContent(string path)
+        public static string GoToNextDirectory(ref string path)
         {
-            string[] directories = Directory.GetDirectories(path);
             WriteLine("Write the name of the folder:");
             string folder = ReadLine();
             string tempPath = path;
             if (Directory.Exists(tempPath + folder))
             {
                 path += $"{folder}\\";
-                DirectoryContent(path);
                 return path;
             }
             else
